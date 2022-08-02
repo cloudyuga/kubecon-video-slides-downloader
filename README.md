@@ -18,7 +18,7 @@ and -d flag (dates for which you want the slides)
 ```
 - Or provide multiple dates at once.
 ```
-./kubecon.sh -u "https://kccnceu2022.sched.com" -a "2022-05-16 2022-05-17 2022-05-18 2022--05-19"
+./kubecon.sh -u "https://kccnceu2022.sched.com" -a "2022-05-16 2022-05-17 2022-05-18 2022-05-19"
 ```
 It will start downloading the files in slides folder
 

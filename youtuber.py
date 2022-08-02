@@ -2,8 +2,8 @@ import youtube_dl
 import os
 import re
 
-os.system('output_mark.md')
-sourceFile = open('output_22.md', 'w')
+os.system('touch Output_mark.md')
+sourceFile = open('Output_mark.md', 'w')
 
 os.system('touch out_test.txt')
 
@@ -81,5 +81,5 @@ for line in loglist:
     #print(line1)
 '''
 os.system('rm out_test.txt')
-
+sourceFile.close()
 print(slide)

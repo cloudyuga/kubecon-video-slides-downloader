@@ -1,22 +1,51 @@
 import youtube_dl
 import os
 import re
+from pytube import Playlist
+import argparse
 
-os.system('touch Output_mark.md')
-sourceFile = open('Output_mark.md', 'w')
 
 os.system('touch out_test.txt')
 
 testfile = open('out_test.txt', 'w')
 text_content = open("./kccncVideos.txt", "r")
 text_string = text_content.read().replace("\n", " ")
+txt = list(text_string.split(" "))
+text_content.close()
 
-print("Enter the url:")
-url=' '+input()
-print("Enter starting point of videos:")
-start = int(input())
-print("Enter number of videos:")
-end = int(input())
+
+######## argument parsing - playlist name and length of playlist
+parser = argparse.ArgumentParser()
+parser.add_argument("-url", "--url", dest = "url", help="URL of playlist")
+parser.add_argument("-st", "--start", dest = "start", default = 1, help="Start of playlist",type=int)
+parser.add_argument("-ed", "--end", dest = "end", default = 0, help="End of Playlist",type=int)
+parser.add_argument("-f", "--folder", dest = "folder", default = 'slides', help="where slides are already stored")
+parser.add_argument("-Of", "--outputf", dest = "outputf", default = './', help="folder where output will be stored")
+parser.add_argument("-Ofl", "--Outfile", dest = "Outfile", default = 'Output_mark', help="outfile name")
+
+args = parser.parse_args()
+
+url=' '+args.url
+folder = args.folder
+
+start = args.start
+end = args.end
+
+######## to check number of videos in playlist
+play_list = Playlist(url)
+countV=len(play_list)
+if end==0:
+	end=countV
+
+path = args.outputf
+
+if not os.path.exists(path):
+    os.makedirs(path)
+filename=args.Outfile
+filename = filename + '.md'
+
+
+sourceFile = open(os.path.join(path, filename), 'w')
 
 
 #url = ' ' + 'https://www.youtube.com/playlist?list=PLj6h78yzYM2MCEgkd8zH0vJWF7jdQ-GRR'

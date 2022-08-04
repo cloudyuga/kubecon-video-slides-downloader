@@ -9,12 +9,18 @@ do
     case "${flag}" in
         u) SchedUrl=${OPTARG};;
         d) Days=${OPTARG};;
+        l) Locat=${OPTARG};;
+
     esac
 done
 
 if [ -z "$Days" ]
 then
       echo "Provide at least 1 Date"
+fi
+if [ -z "$Locat" ]
+then
+      Locat="slides"
 fi
 
 #https://kccnceu2022.sched.com
@@ -32,7 +38,7 @@ for DAY in "${DAYS[@]}"; do
     echo  $FILE_URL
     if [ -n "${FILE_URL}" ]; then
       FILEPATHwrite="$(echo $(echo ${LINK} | cut -b 12-)).${FILE_URL##*.}"
-      FILEPATH="slides/$(echo $(echo ${LINK} | cut -b 12-)).${FILE_URL##*.}"
+      FILEPATH="${Locat}/$(echo $(echo ${LINK} | cut -b 12-)).${FILE_URL##*.}"
       #curl -o "${FILEPATH}" -s "${FILE_URL}"
       echo $FILEPATHwrite >> kccncVideos.txt
 

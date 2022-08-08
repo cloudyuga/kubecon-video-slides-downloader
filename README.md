@@ -15,6 +15,16 @@ eg. Link for Kubecon22 EU : [https://kccnceu2022.sched.com](https://kccnceu2022.
 
     Dates : "2022-05-16" "2022-05-17" "2022-05-18" "2022-05-19" "2022-05-20"
 
+### Running the python file.
+- Create a virtual environment using `python3 -m venv venv`, where the second venv is the name of the virtual environment
+- Activate the virtual environment using `source venv/bin/activate`
+- Import all the packages as per requirements.txt (Run `pip3 install -r requirements.txt` in Terminal)
+- Run this command `git checkout pull-feature` for getting the corresponding files
+- Run `python3 youtuber.py`
+- Enter the url of presentation slides you wish to download (using flag or when the prompt comes)
+- Enter the url of the corresponding playlist you wish to scrape
+
+#### Entering the dates
 - You can provide a single date
 ```
 python3 youtuber.py -link https://kccnceu2022.sched.com -d "2022-05-17" 
@@ -23,13 +33,6 @@ python3 youtuber.py -link https://kccnceu2022.sched.com -d "2022-05-17"
 ```
 python3 youtuber.py -link "https://kccnceu2022.sched.com" -d "2022-05-16 2022-05-17 2022-05-18 2022-05-19"
 ```
-### Running the python file.
-- Create a virtual environment using `python3 -m venv venv`, where the second venv is the name of the virtual environment
-- Activate the virtual environment using `source venv/bin/activate`
-- Import all the packages as per requirements.txt (Run `pip3 install -r requirements.txt` in Terminal)
-- Run this command `git checkout pull-feature` for getting the corresponding files
-- Run `python3 youtuber.py`
-- Enter the url of the corresponding playlist you wish to scrape
 
 - Now the output is obtained in the markdown format to get the tabular display on the github repository. [Example](https://github.com/cloudyuga/kubecon19-china)  
 - The output file by default is README.md (or you can change it using -ofl tag)

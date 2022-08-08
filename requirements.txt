@@ -1,1 +1,11 @@
 youtube-dl==2019.11.05
+pathlib
+requests
+urllib
+pytube 
+argparse
+bs4 
+re
+subprocess
+os
+

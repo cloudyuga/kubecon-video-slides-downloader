@@ -46,8 +46,9 @@ python3 youtuber.py -link "https://kccnceu2022.sched.com" -d "2022-05-16 2022-05
 | f        | slides location given in output markdown file | slides folder                      |
 | of       | Output file storage location                  | Same folder                        |
 | ofl      | Output file name                              | README.md                          |
+
 **Description:**  
-This piece of code let us iterate through the playlist in youtube to track down the title and respective URLs.
+This piece of code downloads the slides of presentation and let us iterate through the playlist in youtube to track down the title and respective URLs.
 It also prints out the formatting or say template.
 In a way which can be copied to github as in markdown language for tabular display.  
 

@@ -32,7 +32,7 @@ python3 youtuber.py -link "https://kccnceu2022.sched.com" -d "2022-05-16 2022-05
 - Enter the url of the corresponding playlist you wish to scrape
 
 - Now the output is obtained in the markdown format to get the tabular display on the github repository. [Example](https://github.com/cloudyuga/kubecon19-china)  
-- The output file by default is Output_mark.md
+- The output file by default is README.md (or you can change it using -ofl tag)
 
 ### Flags to be used
 | flag tag | description                                   | default value                      |

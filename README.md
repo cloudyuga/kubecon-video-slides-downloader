@@ -22,8 +22,6 @@ Dates : "2022-05-16" "2022-05-17" "2022-05-18" "2022-05-19" "2022-05-20"
 - Enter the url of presentation slides (Sched URL of KubeCon) you wish to download (using flag or when the prompt comes)
 - Enter thr dates of the KubeCon you wish to scrape the slides for (using flag or when the prompt comes)
 
-![How to run python code](python_code_instruct.jpg "to run the python code")
-
 ### Entering the dates
 - You can provide single or multiple dates of the KubeCon
 ```

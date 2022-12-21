@@ -18,8 +18,11 @@ Dates : "2022-05-16" "2022-05-17" "2022-05-18" "2022-05-19" "2022-05-20"
 ## To run the Python code
 - Install all the python as per `requirements.txt`  ( Run `pip3 install -r requirements.txt` in Terminal)
 - Run `python3 youtuber.py`
-- Enter the url of presentation slides (Sched URL of KubeCon) you wish to download (using flag or when the prompt comes)
 - Enter the url of the corresponding KubeCon youtube video playlist you wish to scrape
+- Enter the url of presentation slides (Sched URL of KubeCon) you wish to download (using flag or when the prompt comes)
+- Enter thr dates of the KubeCon you wish to scrape the slides for (using flag or when the prompt comes)
+
+![How to run python code](python_code_instruct.jpg "to run the python code")
 
 ### Entering the dates
 - You can provide single or multiple dates of the KubeCon
@@ -27,8 +30,9 @@ Dates : "2022-05-16" "2022-05-17" "2022-05-18" "2022-05-19" "2022-05-20"
 python3 youtuber.py -link https://kccnceu2022.sched.com -d "2022-05-18" 
 ```
 ```
-python3 youtuber.py -link "https://kccnceu2022.sched.com" -d "2022-05-18 2022-05-19 2022-05-20"
+python3 youtuber.py -link https://kccnceu2022.sched.com -d "2022-05-18 2022-05-19 2022-05-20"
 ```
+
 - The slides will be downloaded in the `slides` folder repsectively.
 - The output will be obtained in the markdown file to get the tabular display of videos and slides, [KubeCon EU 2022](https://github.com/cloudyuga/kubecon-talks/blob/main/Kubecon_EU-22.md)  
 - The output file by default is KUBECON.md (you can change it using -ofl tag)

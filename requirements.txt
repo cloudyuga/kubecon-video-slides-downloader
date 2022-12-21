@@ -1,11 +1,5 @@
-youtube-dl==2019.11.05
-pathlib
-requests
-urllib
-pytube 
-argparse
-bs4 
-re
-subprocess
-os
-
+beautifulsoup4==4.11.1
+pytube==12.1.2
+requests==2.22.0
+urllib3==1.25.8
+youtube-dl==2021.12.17

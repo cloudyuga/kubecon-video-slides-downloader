@@ -1,41 +1,39 @@
 # Youtube Kubecon-to-markdown  
+To download the Kubecon talks slides and create a markdown file of KubeCon Youtube videos along with their slides.
+This piece of code downloads the slides of presentation and let us iterate through the playlist in youtube to track down the title and respective URLs.
+It also prints out the formatting or say template in a way which can be copied to github as in markdown language for tabular display.  
 
-**How to run?**  
-### Getting the Presentation Slides , playlist and making the markdown file.:
-
-- Get the schedule link, exact dates from Sched and presentation playlist of the event from Youtube.
-
-Presentation playlist.
+## Getting the Presentation Slides , Youtube Videos Playlist and generating the markdown file
+- Youtube Videos playlist
 ```
 eg. Link for Kubecon EU 2022 https://www.youtube.com/playlist?list=PLj6h78yzYM2MCEgkd8zH0vJWF7jdQ-GRR
 ```
-
-
+- Presentation link from KubeCon Sched schedule and its dates.
+```
 eg. Link for Kubecon22 EU : [https://kccnceu2022.sched.com](https://kccnceu2022.sched.com)
 
-    Dates : "2022-05-16" "2022-05-17" "2022-05-18" "2022-05-19" "2022-05-20"
-
-### Running the python file.
-- Create a virtual environment using `python3 -m venv venv`, where the second venv is the name of the virtual environment
-- Activate the virtual environment using `source venv/bin/activate`
-- Import all the packages as per requirements.txt (Run `pip3 install -r requirements.txt` in Terminal)
-- Run this command `git checkout pull-feature` for getting the corresponding files
+Dates : "2022-05-16" "2022-05-17" "2022-05-18" "2022-05-19" "2022-05-20"
+```
+**NOTE** : Please select dates for KubeCon talks accordingly , not for co-located events. 
+## To run the Python code
+- Install all the python as per `requirements.txt`  ( Run `pip3 install -r requirements.txt` in Terminal)
 - Run `python3 youtuber.py`
-- Enter the url of presentation slides you wish to download (using flag or when the prompt comes)
-- Enter the url of the corresponding playlist you wish to scrape
+- Enter the url of the corresponding KubeCon youtube video playlist you wish to scrape
+- Enter the url of presentation slides (Sched URL of KubeCon) you wish to download (using flag or when the prompt comes)
+- Enter thr dates of the KubeCon you wish to scrape the slides for (using flag or when the prompt comes)
 
-#### Entering the dates
-- You can provide a single date
+### Entering the dates
+- You can provide single or multiple dates of the KubeCon
 ```
-python3 youtuber.py -link https://kccnceu2022.sched.com -d "2022-05-17" 
+python3 youtuber.py -link https://kccnceu2022.sched.com -d "2022-05-18" 
 ```
-- Or provide multiple dates at once.
 ```
-python3 youtuber.py -link "https://kccnceu2022.sched.com" -d "2022-05-16 2022-05-17 2022-05-18 2022-05-19"
+python3 youtuber.py -link https://kccnceu2022.sched.com -d "2022-05-18 2022-05-19 2022-05-20"
 ```
 
-- Now the output is obtained in the markdown format to get the tabular display on the github repository. [Example](https://github.com/cloudyuga/kubecon19-china)  
-- The output file by default is README.md (or you can change it using -ofl tag)
+- The slides will be downloaded in the `slides` folder repsectively.
+- The output will be obtained in the markdown file to get the tabular display of videos and slides, [KubeCon EU 2022](https://github.com/cloudyuga/kubecon-talks/blob/main/Kubecon_EU-22.md)  
+- The output file by default is KUBECON.md (you can change it using -ofl tag)
 
 ### Flags to be used
 | flag tag | description                                   | default value                      |
@@ -50,14 +48,8 @@ python3 youtuber.py -link "https://kccnceu2022.sched.com" -d "2022-05-16 2022-05
 | of       | Output file storage location                  | Same folder                        |
 | ofl      | Output file name                              | README.md                          |
 
-**Description:**  
-This piece of code downloads the slides of presentation and let us iterate through the playlist in youtube to track down the title and respective URLs.
-It also prints out the formatting or say template.
-In a way which can be copied to github as in markdown language for tabular display.  
-
 ### Debugging the file
 
 There are chances that certain presentation files do not get matched with their correct presentation (either because there is a difference in name or some other reasons).
 For those conditions you can check the files as follows:
-- At the end of python execution you get the total number of files added to markdown.md, you can verify the number with total number of lines in kccncVideos.txt file (names of all slides downloaded by kubecon.sh)
-- You can then look for the left out files by executing the commented lines of code (present at the last section of python file).
+- At the end of python execution you get the total number of files added to markdown.md, you can verify the number with total number of lines in kccncSlides.txt file (names of all slides being downloaded)

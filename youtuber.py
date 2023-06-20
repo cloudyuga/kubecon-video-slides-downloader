@@ -1,12 +1,11 @@
 from pathlib import Path
 import requests
 import urllib.request, urllib.error, urllib.parse
-from pytube import Playlist
+from pytube import YouTube, Playlist , extract
 import argparse
 from bs4 import BeautifulSoup
 import re
 import subprocess
-import youtube_dl
 import os
 
 ######## argument parsing - playlist name and length of playlist
@@ -58,17 +57,17 @@ SlideFile = open('kccncSlides.txt', 'w')
 
 dates = DAYS.split(" ")
 for day in dates:
-    xd=LINK+day+"/overview"
-    # print("link :" ,xd)
+    xd=LINK+"/"+day+"/overview"
+    #print("link :" ,xd)
     response = urllib.request.urlopen(xd)
     webContent = response.read().decode('UTF-8')
-    # print("webcontent:" ,webContent)
+    #print("webcontent:" ,webContent)
     soup = BeautifulSoup(webContent,'html.parser')
     
     for link in soup("a", "name", href=True):
         name=(link['href'][11:])
         #print("name", name)
-        FILE_url=LINK+link['href']
+        FILE_url=LINK+"/"+link['href']
         #print("file url",FILE_url)
         response = urllib.request.urlopen(FILE_url)
         webContent = response.read().decode('UTF-8')
@@ -97,15 +96,6 @@ for day in dates:
 
 
 
-start = args.start
-end = args.end
-
-# ######## to check number of videos in playlist
-play_list = Playlist(url)
-countV=len(play_list)
-if end==0:
-	end=countV
-
 path = args.outputf
 
 if not os.path.exists(path):
@@ -122,23 +112,30 @@ txt = list(text_string.split(" "))
 text_content.close()
 
 #  For fetching the title of youtube video in playlist
-cmd_code1 = 'python3 -m youtube_dl --no-check-certificate -e --playlist-start ' + \
-    str(start)+' --playlist-end '+str(end)+url
-print("Fetching youtube video title " + cmd_code1)
-title = os.popen(cmd_code1).read().splitlines()
 
-#  For fetching the id of that particular video in playlist
-cmd_code2 = 'python3 -m youtube_dl --no-check-certificate --get-id --playlist-start ' + \
-    str(start)+' --playlist-end '+str(end)+url
-video_id = os.popen(cmd_code2).read().splitlines()
+playlist_link = url
 
+video_links = Playlist(playlist_link).video_urls
+
+video_titles = []
+video_ids = []
+for link in video_links:
+    #print(YouTube(link).title)
+    video_titles.append(YouTube(link).title)
+    id=extract.video_id(link)
+    video_ids.append(id)
+    #print(id)
+    
+
+# print("Title: " , video_titles) # <= Here, you got the video title
+# print("id: " , video_ids)
 
 print('| Topic        |      Video     |  Presentation |',file=sourceFile)
 print('| ------------- |:-------------:| -----:|',file=sourceFile)
 slide=0
-for i in range(0, len(title)):
+for i in range(0, len(video_titles)):
 
-	kk = title[i].lower().replace("'", "")
+	kk = video_titles[i].lower().replace("'", "")
 	resy = res = re.findall(r'\w+', kk)
 
 	count=True
@@ -146,17 +143,14 @@ for i in range(0, len(title)):
 		resi = re.findall(r'\w+', k.lower())
 		if resy[:3] == resi[:3]:
             # print(k)
-			#print(k,file=testfile)
+			# print(k,file=testfile)
 
-			print('|' + title[i] + '|[Watch Here](https://www.youtube.com/watch?v=' +video_id[i]+')|'+'[Slides]('+folder+'/' + k + ')|', file=sourceFile)
+			print('|' + video_titles[i] + '|[Watch Here](https://www.youtube.com/watch?v=' +video_ids[i]+')|'+'[Slides]('+folder+'/' + k + ')|', file=sourceFile)
 			count=False
 			slide=slide+1
 			break
 	if count:
-		print('|' + title[i] + '|[Watch Here](https://www.youtube.com/watch?v='+video_id[i]+')|'+'-|',file=sourceFile)
+		print('|' + video_titles[i] + '|[Watch Here](https://www.youtube.com/watch?v='+video_ids[i]+')|'+'-|',file=sourceFile)
 		#pass
 		#break
 sourceFile.close()
-print(slide)
-
-
